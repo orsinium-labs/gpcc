@@ -2,9 +2,10 @@
 https://gpc-browser.gs1.org/
 """
 from __future__ import annotations
+import json
 from typing import BinaryIO, Literal
 import aiohttp
-from ._schemas import Language, Publication
+from ._schemas import Language, Publication, Categories, Category
 
 URL_LANGS = 'https://gpc-api.gs1.org/api/browser/language/all'
 URL_PUBLICATIONS = 'https://gpc-api.gs1.org/api/browser/publication?languageId={lang}'
@@ -78,3 +79,22 @@ async def fetch_file(
             chunk = await resp.content.read(chunk_size)
             stream.write(chunk)
             finished = not chunk
+
+
+async def parse_json_file(stream: BinaryIO) -> Categories:
+    data = json.load(stream)
+    return Categories(
+        LanguageCode=data['LanguageCode'],
+        DateUtc=data['DateUtc'],
+        Schema=_parse_categories(data['Schema']),
+    )
+
+
+def _parse_categories(raw_cats: list[dict]) -> list[Category]:
+    if not raw_cats:
+        return []
+    cats = []
+    for raw_cat in raw_cats:
+        raw_cat['Childs'] = _parse_categories(raw_cat['Childs'])
+        cats.append(Category(**raw_cat))
+    return cats

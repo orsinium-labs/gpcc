@@ -34,3 +34,21 @@ class Publication:
     userId: str                         # "317544aa-4656-eb11-a812-0022481e215a"
     userName: str | None                # null
     version: str                        # "v20230605"
+
+
+@dataclass(frozen=True)
+class Categories:
+    LanguageCode: str           # "EN"
+    DateUtc: str                # "5/6/2023"
+    Schema: list[Category]      # [...]
+
+
+@dataclass(frozen=True)
+class Category:
+    Level: str                  # int
+    Code: int                   # 10001686
+    Title: str                  # "Airbrushes (Powered)"
+    Definition: str             # "Includes any products that can ..."
+    DefinitionExcludes: str     # "Specifically excludes Spray Paint and Aerosols..."
+    Active: bool                # true
+    Childs: list[Category]      # []
