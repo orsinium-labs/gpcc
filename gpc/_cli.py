@@ -1,11 +1,12 @@
 from __future__ import annotations
-from argparse import ArgumentParser
+
 import asyncio
-from pathlib import Path
 import sys
+from argparse import ArgumentParser
+from pathlib import Path
 from typing import NoReturn, TextIO
 
-from ._crawlers import get_languages, get_language, fetch_files
+from ._crawlers import fetch_files, get_language, get_languages
 from ._schemas import Language
 
 

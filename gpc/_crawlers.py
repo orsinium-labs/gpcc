@@ -2,13 +2,17 @@
 https://gpc-browser.gs1.org/
 """
 from __future__ import annotations
+
 import asyncio
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 from typing import BinaryIO, Literal, TextIO
+
 import aiohttp
-from ._schemas import Language, Publication, Categories, Category
+
+from ._schemas import Categories, Category, Language, Publication
+
 
 URL_LANGS = 'https://gpc-api.gs1.org/api/browser/language/all'
 URL_PUBLICATIONS = 'https://gpc-api.gs1.org/api/browser/publication?languageId={lang}'

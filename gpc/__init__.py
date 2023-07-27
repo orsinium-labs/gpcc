@@ -1,13 +1,10 @@
 """Fetch data from https://gpc-browser.gs1.org/.
 """
 from ._crawlers import (
-    fetch_file,
-    get_language,
-    get_languages,
-    get_publications,
-    parse_json_file,
+    fetch_file, get_language, get_languages, get_publications, parse_json_file,
 )
-from ._schemas import Language, Publication, Categories, Category
+from ._schemas import Categories, Category, Language, Publication
+
 
 __version__ = '1.0.0'
 __all__ = [
