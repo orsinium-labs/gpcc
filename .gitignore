@@ -8,3 +8,4 @@ __pycache__/
 /.venvs/
 /docs/build/
 /tmp.py
+/gpc-dump/
