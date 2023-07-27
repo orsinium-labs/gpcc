@@ -1,4 +1,4 @@
-# pygpc
+# gpcc
 
 Python library and CLI tool to fetch information from [GCP Browser](https://gpc-browser.gs1.org/).
 
@@ -7,33 +7,33 @@ This is a standardized classifier of products used across companies. The classif
 ## Installation
 
 ```bash
-python3 -m pip install pygpc
+python3 -m pip install gpcc
 ```
 
 ## CLI usage
 
 ```bash
 # download latest JSONs for all languages
-python3 -m pygpc
+python3 -m gpcc
 
 # download latest JSON for a specified language
-python3 -m pygpc --lang nl
+python3 -m gpcc --lang nl
 
 # download into a specified directory
-python3 -m pygpc --output ./gpc-dump/
+python3 -m gpcc --output ./gpc-dump/
 ```
 
 ## Python usage
 
 ```python
 import asyncio
-import pygpc
+import gpcc
 from pathlib import Path
 
 async def run():
-    langs = await pygpc.get_languages()
+    langs = await gpcc.get_languages()
     output = Path('gpc-dump')
-    await pygpc.fetch_files(output, langs)
+    await gpcc.fetch_files(output, langs)
 
 asyncio.run(run())
 ```
